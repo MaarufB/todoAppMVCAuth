@@ -1,0 +1,3 @@
+./TodoApp-MVC/bin/*
+./TodoApp-MVC/obj/*
+*.sln
