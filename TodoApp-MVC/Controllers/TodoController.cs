@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using TodoApp_MVC.Data;
 using TodoApp_MVC.Models;
+using TodoApp_MVC.Repositories.TodoRepo;
 using TodoApp_MVC.ViewModels.Todo;
 
 namespace TodoApp_MVC.Controllers
@@ -11,9 +12,11 @@ namespace TodoApp_MVC.Controllers
     public class TodoController : Controller
     {
         private readonly ApplicationDataContext _context;
-        public TodoController(ApplicationDataContext context)
+        private readonly ITodoRepository _repo;
+        public TodoController(ApplicationDataContext context, ITodoRepository repo)
         {
             _context = context;
+            _repo = repo;
         }
         // GET: TodoController
         public async Task<ActionResult> Index()
@@ -84,28 +87,50 @@ namespace TodoApp_MVC.Controllers
         }
 
         // GET: TodoController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var todo = await _context.Todos.FirstOrDefaultAsync(x => x.Id == id);
+            var response = new UpdateTodoViewModel(){
+                Id = todo.Id,
+                Title = todo.Title,
+                Description = todo.Description,
+                IsComplete = todo.IsComplete
+            };
+            return View(response);
         }
 
         // POST: TodoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(UpdateTodoViewModel todoViewModel)
+        public async Task<ActionResult> Edit(int id, UpdateTodoViewModel todoViewModel)
         {
             // Todo: Validate if Valid
 
+            var claimsIdentity = (ClaimsIdentity?)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+
+
             if (ModelState.IsValid)
             {
-                var todo = new Todo()
+
+                var todo = await _context.Todos.FirstOrDefaultAsync(u => u.Id == todoViewModel.Id);
+
+
+                var todoVM = new Todo
                 {
+                    Id = todoViewModel.Id,
                     Title = todoViewModel.Title,
                     Description = todoViewModel.Description,
-                    IsComplete = todoViewModel.IsComplete,
+                    AppUserId = claim.Value
                 };
 
-                _context.Todos.Update(todo);
+                _context.Entry<Todo>(todoVM).State = EntityState.Detached;
+
+                _context.Todos.Update(todoVM);
+                
+
+                
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");

@@ -1,23 +1,24 @@
-﻿@model TodoApp_MVC.ViewModels.Todo.CreateTodoViewModel
+﻿@model TodoApp_MVC.ViewModels.Todo.UpdateTodoViewModel
 @{
     ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
 
-<h4>CreateTodoViewModel</h4>
+<h4>Update</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" >
+    <div  class="col-md-4">
+        <form method="post" asp-action="Edit" >
+            <input asp-for="Id" hidden />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">@Model.Title</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label">@Model.Description</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -27,7 +28,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>
