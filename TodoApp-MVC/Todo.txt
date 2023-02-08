@@ -1,0 +1,15 @@
+﻿TODO:
+1. Continue to setup the User features 
+2. Create Data seeders
+3. Create ViewModels or DTOs
+
+
+
+
+References:
+	Relationships with Users to Todos
+		https://stackoverflow.com/questions/54608221/asp-net-core-add-many-to-many-relationship-with-identityuser
+
+
+	To get the current user identity, refer to BulkyBook>Areas>Customer>Controller>CartController>Index()
+		This code provided approach to get the current user identiy by using `ClaimsIdentity`
