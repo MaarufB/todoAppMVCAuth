@@ -22,7 +22,7 @@
 
                     <div class="row row-button">
                         <a asp-area="" asp-controller="Todo" asp-action="Edit" asp-route-id="@item.Id" class="col btn-md btn-success btn-update">Update</a>
-                        <a class="col btn-md btn-danger btn-delete">X</a>
+                        <a asp-area="" asp-controller="Todo" asp-action="Delete" asp-route-id="@item.Id" class="col btn-md btn-danger btn-delete">X</a>
                     </div>
 
                 </div>

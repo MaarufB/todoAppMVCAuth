@@ -12,11 +12,11 @@ namespace TodoApp_MVC.Controllers
     public class TodoController : Controller
     {
         private readonly ApplicationDataContext _context;
-        private readonly ITodoRepository _repo;
-        public TodoController(ApplicationDataContext context, ITodoRepository repo)
+        //private readonly ITodoRepository _repo;
+        public TodoController(ApplicationDataContext context)
         {
             _context = context;
-            _repo = repo;
+            //_repo = repo;
         }
         // GET: TodoController
         public async Task<ActionResult> Index()
@@ -102,7 +102,7 @@ namespace TodoApp_MVC.Controllers
         // POST: TodoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, UpdateTodoViewModel todoViewModel)
+        public ActionResult Edit(UpdateTodoViewModel todoViewModel)
         {
             // Todo: Validate if Valid
 
@@ -114,9 +114,6 @@ namespace TodoApp_MVC.Controllers
             if (ModelState.IsValid)
             {
 
-                var todo = await _context.Todos.FirstOrDefaultAsync(u => u.Id == todoViewModel.Id);
-
-
                 var todoVM = new Todo
                 {
                     Id = todoViewModel.Id,
@@ -125,18 +122,25 @@ namespace TodoApp_MVC.Controllers
                     AppUserId = claim.Value
                 };
 
-                _context.Entry<Todo>(todoVM).State = EntityState.Detached;
 
                 _context.Todos.Update(todoVM);
-                
-
-                
-                await _context.SaveChangesAsync();
+                 _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
             return NotFound();
+        }
+
+        [HttpGet, ActionName("Delete")]
+        public async Task<ActionResult> DeleteDetail(int id)
+        {
+            var todo = await _context.Todos.FirstOrDefaultAsync(x => x.Id == id);
+
+
+            var response = new DeleteTodoViewModel { TodoId = id };
+            
+            return View("DeleteDetail", response);
         }
 
 
