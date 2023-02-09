@@ -44,8 +44,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/MyFiles/Project/dotnet/Repos/TodoAppMVCAuthFeatures/TodoFeatures/todoAppMVCAuth/TodoApp-MVC/Views/Todo/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xEZWxldGUuY3NodG1s
+[C:/MyFiles/Project/dotnet/Repos/TodoAppMVCAuthFeatures/TodoFeatures/todoAppMVCAuth/TodoApp-MVC/Views/Todo/DeleteDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xEZWxldGVEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/MyFiles/Project/dotnet/Repos/TodoAppMVCAuthFeatures/TodoFeatures/todoAppMVCAuth/TodoApp-MVC/Views/Todo/Edit.cshtml]
