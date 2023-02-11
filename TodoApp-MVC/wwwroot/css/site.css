@@ -1,18 +1,100 @@
-html {
-  font-size: 14px;
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+body{
+  /* background-color: #f0f0f0; */
+}
+.border-red{
+  border: 2px solid red;
+}
+.border-green{
+  border: 2px solid green;
+}
+.border-blue{
+  border: 2px solid blue;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.main-container{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 1em;
 }
 
-body {
-  margin-bottom: 60px;
+/* TODO Index Section */
+
+.todo-container{
+  /* background-color: #f0f0f0; */
+  max-width: 615px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  /* border: 2px solid black; */
+}
+
+.todo-wrapper{
+  padding: 20px;
+  /* border: 2px solid green; */
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.sub-wrapper{
+  width: 90%;
+}
+
+.search-container{
+  margin: 0 0 20px;
+}
+.form-search{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.search-input{
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.search-btn{
+  width: auto;
+}
+.items-wrapper{
+  margin-top: 5px;
+}
+.items{
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.item-title{
+  text-decoration: none;
+  color: black;
+}
+.item-title-done{
+  text-decoration: dashed;
+  color: black;
+}
+.item-btn-delete{
+  text-decoration: none;
+}
+.add-btn{
+  margin: 10px 0 10px 10px;
+}
+
+
+/* Todo Create Section */
+.todo-create-update-container{
+  padding: 10px;
 }

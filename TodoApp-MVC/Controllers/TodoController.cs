@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using TodoApp_MVC.Data;
 using TodoApp_MVC.Models;
+using TodoApp_MVC.Repositories.TodoRepo;
 using TodoApp_MVC.ViewModels.Todo;
 
 namespace TodoApp_MVC.Controllers
@@ -11,9 +12,11 @@ namespace TodoApp_MVC.Controllers
     public class TodoController : Controller
     {
         private readonly ApplicationDataContext _context;
-        public TodoController(ApplicationDataContext context)
+        private readonly ITodoRepository _todoRepository;
+        public TodoController(ApplicationDataContext context, ITodoRepository todoRepository)
         {
             _context = context;
+            _todoRepository= todoRepository;
         }
         // GET: TodoController
         public async Task<ActionResult> Index()
@@ -21,9 +24,10 @@ namespace TodoApp_MVC.Controllers
             var claimsIdentity = (ClaimsIdentity?)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            var todoModel = await _context.Todos.Where(i => i.AppUserId == claim.Value).ToListAsync();
-            
-            return View(todoModel);
+
+            var todos = await _todoRepository.GetAllByUser(claim.Value);
+
+            return View(todos);
         }
 
         // GET: TodoController/Details/5
@@ -31,22 +35,24 @@ namespace TodoApp_MVC.Controllers
         {
             var todoDetails = await _context.Todos.FirstOrDefaultAsync(u => u.Id == id);
             
-            if(todoDetails != null)
+            if(todoDetails == null)
             {
-                var todoResponse = new UpdateTodoViewModel
-                {
-                    Id = todoDetails.Id,
-                    Title = todoDetails.Title,
-                    Description = todoDetails.Description,
-                    IsComplete = todoDetails.IsComplete
-                };
+                TempData["Error"] = "Todo cannot be found";
 
-                return View(todoResponse);
+                return NotFound();
             }
 
-            TempData["Error"] = "Todo cannot be found";
+            var todoResponse = new UpdateTodoViewModel
+            {
+                Id = todoDetails.Id,
+                Title = todoDetails.Title,
+                Description = todoDetails.Description,
+                IsComplete = todoDetails.IsComplete
+            };
 
-            return NotFound();
+            return View(todoResponse);
+
+
         }
 
         // GET: TodoController/Create
@@ -67,7 +73,7 @@ namespace TodoApp_MVC.Controllers
             var claimsIdentity = (ClaimsIdentity?)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            var todos = new Todo()
+            var todo = new Todo()
             {
                 Title = todoViewModel.Title,
                 Description = todoViewModel.Description,
@@ -75,18 +81,23 @@ namespace TodoApp_MVC.Controllers
                 AppUserId = claim.Value
             };
 
-            await _context.Todos.AddAsync(todos);
-            await _context.SaveChangesAsync();
-
-
+           await _todoRepository.AddAsync(todo);
 
             return RedirectToAction("Index");
         }
 
         // GET: TodoController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var todo = await _todoRepository.GetAsNoTracking(id);
+            
+            var response = new UpdateTodoViewModel(){
+                Id = todo.Id,
+                Title = todo.Title,
+                Description = todo.Description,
+                IsComplete = todo.IsComplete
+            };
+            return View(response);
         }
 
         // POST: TodoController/Edit/5
@@ -94,37 +105,59 @@ namespace TodoApp_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(UpdateTodoViewModel todoViewModel)
         {
-            // Todo: Validate if Valid
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var todo = new Todo()
-                {
-                    Title = todoViewModel.Title,
-                    Description = todoViewModel.Description,
-                    IsComplete = todoViewModel.IsComplete,
-                };
-
-                _context.Todos.Update(todo);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("Index");
+                ModelState.AddModelError("", "Invalid Fields");
+                return View(todoViewModel);
             }
 
-            return NotFound();
+            var claimsIdentity = (ClaimsIdentity?)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+
+            var todoVM = new Todo
+            {
+                Id = todoViewModel.Id,
+                Title = todoViewModel.Title,
+                Description = todoViewModel.Description,
+                AppUserId = claim.Value
+            };
+
+            await _todoRepository.Update(todoVM);
+          
+            
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpGet, ActionName("Delete")]
+        public async Task<ActionResult> DeleteDetail(int id)
+        {
+            var todo = await _todoRepository.GetAsNoTracking(id);
+
+            var response = new DeleteTodoViewModel 
+            { 
+                Id = todo.Id, 
+                Title = todo.Title, 
+                Description= todo.Description, 
+                IsComplete= todo.IsComplete
+            };
+            
+            return View("DeleteDetail", response);
         }
 
 
         // POST: TodoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(DeleteTodoViewModel todoDeleteVM)
         {
-            var todo = await _context.Todos.FirstOrDefaultAsync(i => i.Id == id);
+            var todo = await _todoRepository.GetAsNoTracking(todoDeleteVM.Id);
+
             if (todo != null)
             {
-                _context.Todos.Remove(todo);
-                await _context.SaveChangesAsync();
+                _todoRepository.DeleteAsync(todo);
 
                 return RedirectToAction("Index");
             }
