@@ -62,31 +62,7 @@ namespace TodoApp_MVC.Controllers
                 return RedirectToAction("Login");
             }
 
-            return RedirectToAction("Index", "Home");
-
-
-            //var user = await _userRepository.FindUserByEmailAsync(registerViewModel.EmailAddress);
-
-            //if (user != null)
-            //{
-            //    TempData["Error"] = "Failed";
-            //    return View(registerViewModel);
-            //}
-
-            //var newUser = new AppUser()
-            //{
-            //    Email = registerViewModel.EmailAddress,
-            //    UserName = registerViewModel.EmailAddress
-            //};
-
-            //var newUserResponse = await _userManager
-            //                        .CreateAsync(newUser, registerViewModel.Password);
-
-            //if (newUserResponse.Succeeded)
-            //    await _userManager.AddToRoleAsync(newUser, UserRoles.User);
-
-
-            //return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Todo");
         }
 
         [HttpGet]
@@ -117,7 +93,7 @@ namespace TodoApp_MVC.Controllers
                 return View(loginViewModel);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Todo");
         }
 
         [HttpGet]

@@ -3,38 +3,30 @@
 @{
     ViewData["Title"] = "Register";
 }
-
-<h1>Register</h1>
-
-<h4>RegisterViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row user-container shadow">
+    <div class="col-md p-4">
+        <h2 class="text-center pb4">@ViewData["Title"]</h2>
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label asp-for="EmailAddress" class="control-label"></label>
                 <input asp-for="EmailAddress" class="form-control" />
                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label asp-for="ConfirmPassword" class="control-label"></label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Register" class="btn btn-primary" />
+                <a class="mx-3" asp-action="Login" asp-controller="Account">Login</a> 
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

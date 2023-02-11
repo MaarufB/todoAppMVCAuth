@@ -4,32 +4,26 @@
     ViewData["Title"] = "Login";
 }
 
-<h1>Login</h1>
-
-<h4>LoginViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row user-container shadow p-4">
+    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+    <div class="col-md">
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label asp-for="EmailAddress" class="control-label"></label>
                 <input asp-for="EmailAddress" class="form-control" />
                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group my-3">
+                <input type="submit" value="Login" class="btn btn-primary" />
+                <a class="mx-2" asp-action="Register" asp-controller="Account">Register</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

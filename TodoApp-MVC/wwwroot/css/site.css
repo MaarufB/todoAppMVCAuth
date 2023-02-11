@@ -18,6 +18,7 @@ body{
 }
 
 .main-container{
+  height: 80vh;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -97,4 +98,15 @@ body{
 /* Todo Create Section */
 .todo-create-update-container{
   padding: 10px;
+}
+
+/* User Sections */
+.user-container{
+  /* background-color: #f0f0f0; */
+  max-width: 615px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  /* border: 2px solid black; */
 }
