@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using TodoApp_MVC.Data;
 using TodoApp_MVC.Models;
 using TodoApp_MVC.Repositories.TodoRepo;
+using TodoApp_MVC.Repositories.UserRepo;
 using TodoApp_MVC.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,7 @@ builder.Services.AddDbContext<ApplicationDataContext>(options =>
     );
 
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 // Add Identity
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDataContext>();
 
