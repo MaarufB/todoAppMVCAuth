@@ -1,16 +1,21 @@
 ﻿@model IEnumerable<TodoApp_MVC.Models.Todo>
+@using TodoApp_MVC.Data
 
 @{
-    ViewData["Title"] = "My Todo";
+    ViewData["Title"] = "List";
 }
-
 <div class="todo-container shadow">
  @if(Model.Count() > 0)
     {
         <div class="todo-wrapper">
+            <div class="sub-wrapper d-flex align-items-baseline">
+                <p class="m-0 p-0 font-italic">@ViewData["Username"]</p>
+                <a class="text-dark ms-auto p-0 " asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+            </div>             
             <div class="sub-wrapper">
-                <h3 class="text-center">@ViewData["Title"]</h3>
+                <a class="text-center font-section-title font-italic my-4" style="display:block;" asp-area="" asp-controller="Todo" asp-action="Index">My To-do</a>
             </div>
+
             <div class="sub-wrapper search-container">
                 <form asp-controller="Todo" asp-action="Index" class="form-search">
                     <input type="search" placeholder="type here" name="searchString" class="search-input form-control"/>

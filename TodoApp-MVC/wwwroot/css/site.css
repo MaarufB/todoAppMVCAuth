@@ -4,9 +4,6 @@
   padding: 0;
 }
 
-body{
-  /* background-color: #f0f0f0; */
-}
 .border-red{
   border: 2px solid red;
 }
@@ -16,14 +13,26 @@ body{
 .border-blue{
   border: 2px solid blue;
 }
+body{
+  /* font-family: 'Courier New', Courier, monospace; */
+}
+
+.font-section-title{
+  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-size: 40px;
+}
+.font-italic{
+  font-style: italic;
+}
 
 .main-container{
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
   width: 100%;
   padding: 1em;
+  padding: 50px 0;
 }
 
 /* TODO Index Section */

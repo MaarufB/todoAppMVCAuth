@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qt+n1VWJ8QqU1kRv745v6Bfwrsi72fjIfHyFsa/x12pG4aI/+mg4yGmYN2lyJREChPoxIWKXvI0OJ3cbwgpg5Q==",
+  "dgSpecHash": "D+ojr0eI02l6MqdCdrTKKGpIje3MvmXCzVWkKjylgfEdxh9LtGgBXdcv5j8d3dQGIPk1yqE5C7vzrS6gUiT9mw==",
   "success": true,
-  "projectFilePath": "C:\\MyFiles\\Project\\dotnet\\Repos\\TodoAppMVCAuthFeatures\\TodoAuth\\todoAppMVCAuth\\TodoApp-MVC\\TodoApp-MVC.csproj",
+  "projectFilePath": "C:\\MyFiles\\Project\\dotnet\\Repos\\todo-ui-review\\todoAppMVCAuth\\TodoApp-MVC\\TodoApp-MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maarufb\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\maarufb\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
