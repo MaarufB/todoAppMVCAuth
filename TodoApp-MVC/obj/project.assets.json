@@ -10316,11 +10316,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MyFiles\\Project\\dotnet\\Repos\\TodoAppMVCAuthFeatures\\TodoAuth\\todoAppMVCAuth\\TodoApp-MVC\\TodoApp-MVC.csproj",
+      "projectUniqueName": "C:\\MyFiles\\Project\\dotnet\\Repos\\TodoAppMVCAuthFeatures\\Feature-Todo\\todoAppMVCAuth\\TodoApp-MVC\\TodoApp-MVC.csproj",
       "projectName": "TodoApp-MVC",
-      "projectPath": "C:\\MyFiles\\Project\\dotnet\\Repos\\TodoAppMVCAuthFeatures\\TodoAuth\\todoAppMVCAuth\\TodoApp-MVC\\TodoApp-MVC.csproj",
+      "projectPath": "C:\\MyFiles\\Project\\dotnet\\Repos\\TodoAppMVCAuthFeatures\\Feature-Todo\\todoAppMVCAuth\\TodoApp-MVC\\TodoApp-MVC.csproj",
       "packagesPath": "C:\\Users\\maarufb\\.nuget\\packages\\",
-      "outputPath": "C:\\MyFiles\\Project\\dotnet\\Repos\\TodoAppMVCAuthFeatures\\TodoAuth\\todoAppMVCAuth\\TodoApp-MVC\\obj\\",
+      "outputPath": "C:\\MyFiles\\Project\\dotnet\\Repos\\TodoAppMVCAuthFeatures\\Feature-Todo\\todoAppMVCAuth\\TodoApp-MVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maarufb\\AppData\\Roaming\\NuGet\\NuGet.Config",
