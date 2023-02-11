@@ -136,7 +136,13 @@ namespace TodoApp_MVC.Controllers
         {
             var todo = await _todoRepository.GetAsNoTracking(id);
 
-            var response = new DeleteTodoViewModel { TodoId = todo.Id, Title = todo.Title};
+            var response = new DeleteTodoViewModel 
+            { 
+                Id = todo.Id, 
+                Title = todo.Title, 
+                Description= todo.Description, 
+                IsComplete= todo.IsComplete
+            };
             
             return View("DeleteDetail", response);
         }
@@ -147,7 +153,7 @@ namespace TodoApp_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(DeleteTodoViewModel todoDeleteVM)
         {
-            var todo = await _todoRepository.GetAsNoTracking(todoDeleteVM.TodoId);
+            var todo = await _todoRepository.GetAsNoTracking(todoDeleteVM.Id);
 
             if (todo != null)
             {

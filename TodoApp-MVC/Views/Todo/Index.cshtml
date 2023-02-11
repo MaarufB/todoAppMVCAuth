@@ -1,37 +1,67 @@
 ﻿@model IEnumerable<TodoApp_MVC.Models.Todo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "My Todo";
 }
 
-<div class="todo-container border border-danger">
-    @if(Model.Count() > 0)
+<div class="todo-container shadow">
+ @if(Model.Count() > 0)
     {
-        <div class="todo-wrapper border border-danger">
-            <div class="todo-header">
-                <h3 class="">TODO</h3>
-                <a asp-area="" asp-controller="Todo" asp-action="Create" class="btn btn-primary">Create</a>
+        <div class="todo-wrapper">
+            <div class="sub-wrapper">
+                <h3 class="text-center">@ViewData["Title"]</h3>
+            </div>
+            <div class="sub-wrapper search-container">
+                <form asp-controller="Todo" asp-action="Index" class="form-search">
+                    <input type="search" placeholder="type here" name="searchString" class="search-input form-control"/>
+                    <input type="submit" value="Search" class="btn btn-success search-btn"/>
+                </form>
             </div>
 
-            @foreach (var item in Model)
-            {
-                <div class="container todo-items border border-danger">
-                    <div class="title-container">
-                        <p class="todo-title border border-danger">@item.Title</p>
-                    </div>
-
-                    <div class="row row-button">
-                        <a asp-area="" asp-controller="Todo" asp-action="Edit" asp-route-id="@item.Id" class="col btn-md btn-success btn-update">Update</a>
-                        <a asp-area="" asp-controller="Todo" asp-action="Delete" asp-route-id="@item.Id" class="col btn-md btn-danger btn-delete">X</a>
-                    </div>
-
+            <div class="sub-wrapper items-wrapper">
+                @foreach (var item in Model)
+                {
+                <div class="items">
+                                
+                    @if (@item.IsComplete)
+                        {
+                            <a  asp-area="" 
+                                asp-controller="Todo" 
+                                asp-action="Edit" 
+                                asp-route-id="@item.Id"
+                                class="item-title-done">
+                                    @item.Title
+                            </a>
+                        }
+                        else{
+                            <a  asp-area="" 
+                                asp-controller="Todo" 
+                                asp-action="Edit" 
+                                asp-route-id="@item.Id"
+                                class="item-title">
+                                    @item.Title
+                            </a>
+                        }
+                            <a  asp-area="" 
+                                asp-controller="Todo" 
+                                asp-action="Delete" 
+                                asp-route-id="@item.Id" 
+                                class="item-btn-delete"
+                            >
+                            X
+                            </a>
                 </div>
-            }
-
+                }
+               
+                        <a  asp-area="" 
+                            asp-controller="Todo" 
+                            asp-action="Create"
+                            class="col btn btn-primary add-btn">Add New</a>
+            </div>
+                
         </div>
     }
     else{
         <p>No Todo List</p>   
     }
-
 </div>

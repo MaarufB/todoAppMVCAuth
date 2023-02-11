@@ -1,8 +1,11 @@
 ﻿namespace TodoApp_MVC.ViewModels.Todo
 {
     public class DeleteTodoViewModel
-    {
-        public int TodoId { get; set; }
-        public string Title { get; set; }
+    {        
+        public int Id { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public bool IsComplete { get; set; } = false;
+        public string? UserId { get; set; }
     }
 }

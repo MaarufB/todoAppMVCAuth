@@ -1,71 +1,100 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
-
 *{
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+body{
+  /* background-color: #f0f0f0; */
+}
+.border-red{
+  border: 2px solid red;
+}
+.border-green{
+  border: 2px solid green;
+}
+.border-blue{
+  border: 2px solid blue;
+}
+
+.main-container{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 1em;
+}
+
+/* TODO Index Section */
+
 .todo-container{
-  width: 80%;
+  /* background-color: #f0f0f0; */
+  max-width: 615px;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  /* border: 2px solid black; */
 }
 
 .todo-wrapper{
-  /* display: flex; */
-  width: 70%;
-  margin: auto;
-  
+  padding: 20px;
+  /* border: 2px solid green; */
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-.todo-header{
-  margin: auto;
-  display: flex;
-}
-.todo-items{
-  width: 50%;
-  padding: 10px 0;
-  display: flex;
-  justify-content:space-evenly ;
-  align-items: baseline;
-  flex-wrap: wrap;
+.sub-wrapper{
+  width: 90%;
 }
 
-.buttons-group{
+.search-container{
+  margin: 0 0 20px;
+}
+.form-search{
   display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 
-.row-button{
+.search-input{
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.search-btn{
   width: auto;
 }
-
-.title-container{
-  width: 70%;
+.items-wrapper{
+  margin-top: 5px;
+}
+.items{
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.item-title{
+  text-decoration: none;
+  color: black;
+}
+.item-title-done{
+  text-decoration: dashed;
+  color: black;
+}
+.item-btn-delete{
+  text-decoration: none;
+}
+.add-btn{
+  margin: 10px 0 10px 10px;
 }
 
-.todo-title{
-  display: 80%;
-}
 
-.btn-update{
-  margin: 0 2px;
+/* Todo Create Section */
+.todo-create-update-container{
+  padding: 10px;
 }
-.btn-delete{
-  margin: 0 2px;
-}
-
