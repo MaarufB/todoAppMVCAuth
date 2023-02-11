@@ -26,6 +26,7 @@ namespace TodoApp_MVC.Controllers
 
 
             var todos = await _todoRepository.GetAllByUser(claim.Value);
+            ViewData["Username"] = User.Identity.Name;
 
             return View(todos);
         }
