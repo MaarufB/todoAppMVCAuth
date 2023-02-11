@@ -4,20 +4,6 @@
 @{
     ViewData["Title"] = "List";
 }
-
-@* @if(User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                             </li>
-                        } *@
-
 <div class="todo-container shadow">
  @if(Model.Count() > 0)
     {
