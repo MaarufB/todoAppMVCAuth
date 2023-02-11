@@ -2,6 +2,6 @@
 {
     public class ViewTodoViewModel
     {
-        public IEnumerable<CreateTodoViewModel>? TodoListView { get; set;}
+        public IEnumerable<CreateTodoViewModel> TodoListView { get; set;}
     }
 }

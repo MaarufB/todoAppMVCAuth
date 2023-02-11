@@ -107,11 +107,8 @@ namespace TodoApp_MVC.Controllers
         public async Task<ActionResult> Edit(UpdateTodoViewModel todoViewModel)
         {
 
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "Invalid Fields");
-                return View(todoViewModel);
-            }
+            if (!ModelState.IsValid) return View(todoViewModel);
+            
 
             var claimsIdentity = (ClaimsIdentity?)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
