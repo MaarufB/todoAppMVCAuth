@@ -62,6 +62,22 @@
         </div>
     }
     else{
-        <p>No Todo List</p>   
+        <div class="todo-wrapper">
+            <div class="sub-wrapper">
+                <h3 class="text-center">@ViewData["Title"]</h3>
+            </div>
+            <div class="sub-wrapper search-container">
+                <form asp-controller="Todo" asp-action="Index" class="form-search">
+                    <input type="search" placeholder="type here" name="searchString" class="search-input form-control"/>
+                    <input type="submit" value="Search" class="btn btn-success search-btn"/>
+                </form>
+            </div>
+            <div class="sub-wrapper items-wrapper">
+                <a  asp-area="" 
+                    asp-controller="Todo" 
+                    asp-action="Create"
+                    class="col btn btn-primary add-btn">Add New</a>
+            </div>
+        </div>
     }
 </div>
